@@ -1473,4 +1473,119 @@ section h2 {
     padding: 0.6rem 1.5rem;
     font-size: 1rem;
   }
+}
+
+.metallic-morph {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  perspective: 1000px;
+  z-index: 1;
+}
+
+.metal-shape {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #2a2a2a, #4a4a4a);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 20px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  animation: metalMorph 8s infinite;
+  transform-style: preserve-3d;
+  filter: brightness(1.2) contrast(1.2);
+}
+
+.metal-shape:nth-child(1) {
+  animation-delay: 0s;
+  background: linear-gradient(45deg, #2a2a2a, #4a4a4a);
+  transform: rotateX(45deg) rotateY(45deg);
+}
+
+.metal-shape:nth-child(2) {
+  animation-delay: -2.6s;
+  background: linear-gradient(45deg, #3a3a3a, #5a5a5a);
+  transform: rotateX(60deg) rotateY(30deg);
+}
+
+.metal-shape:nth-child(3) {
+  animation-delay: -5.3s;
+  background: linear-gradient(45deg, #4a4a4a, #6a6a6a);
+  transform: rotateX(30deg) rotateY(60deg);
+}
+
+@keyframes metalMorph {
+  0% {
+    border-radius: 50%;
+    transform: rotateX(45deg) rotateY(45deg) scale(1);
+  }
+  25% {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    transform: rotateX(60deg) rotateY(30deg) scale(1.1);
+  }
+  50% {
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+    transform: rotateX(30deg) rotateY(60deg) scale(0.9);
+  }
+  75% {
+    border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+    transform: rotateX(45deg) rotateY(45deg) scale(1.2);
+  }
+  100% {
+    border-radius: 50%;
+    transform: rotateX(45deg) rotateY(45deg) scale(1);
+  }
+}
+
+.metal-shape::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 100%);
+  border-radius: inherit;
+  animation: metalShine 3s infinite;
+}
+
+@keyframes metalShine {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
+
+.metal-shape::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 30%, 
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 50%);
+  border-radius: inherit;
+  animation: metalGlow 4s infinite;
+}
+
+@keyframes metalGlow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
 } 
